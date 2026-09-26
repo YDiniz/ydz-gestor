@@ -15,7 +15,7 @@ public class App extends Application {
 
         Scene cena = new Scene(raiz);
 
-        stage.setTitle("Mini-ERP Reformas");
+        stage.setTitle("YDZ Gestor");
         stage.setScene(cena);
         stage.show();
     }
