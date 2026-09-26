@@ -1,0 +1,15 @@
+# Compilado / build
+target/
+*.class
+
+# IntelliJ
+.idea/
+*.iml
+out/
+
+# Configuração sensível
+config.properties
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
