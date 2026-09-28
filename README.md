@@ -29,13 +29,14 @@ Além de uso real pela empresa, este projeto também serve como estudo prático 
 
 - Autenticação de usuário (login com senha criptografada)
 - Cadastro de serviços (obras), com vínculo a escola e seleção múltipla de funcionários
+- Anexação de documentos (orçamentos, comprovantes) por serviço
+- Lançamento de pagamentos/adiantamentos por serviço
 - Cadastro de escolas e funcionários (camada de dados e regras de negócio)
 
 ## 🔜 Em desenvolvimento
 
-- Anexação de documentos (orçamentos, comprovantes) por serviço
-- Lançamento de pagamentos/adiantamentos por serviço
 - Tela de acompanhamento de serviços com filtro por status
+- Tela de Cadastro de Funcionários
 - Testes automatizados (JUnit)
 - Empacotamento como executável
 
@@ -49,7 +50,7 @@ Essa separação em camadas mantém a lógica de negócio independente da interf
 
 ## 📄 Licença
 
-Este projeto possui licença personalizada — veja o arquivo [LICENSE](./LICENSE) para detalhes sobre uso permitido.
+Este projeto possui licença personalizada — veja o arquivo [LICENSE](https://github.com/YDiniz/ydz-gestor/blob/main/LICENSE) para detalhes sobre uso permitido.
 
 ## 👤 Autor
 
