@@ -29,6 +29,14 @@
     <Label text="Funcionários:"/>
     <VBox fx:id="containerFuncionarios" prefWidth="300"/>
 
+    <Label text="Anexar orçamento (opcional):"/>
+    <Button text="Selecionar Arquivo" prefWidth="200" onAction="#selecionarArquivo"/>
+    <Label fx:id="labelArquivoSelecionado" style="-fx-font-size: 11px; -fx-text-fill: gray;"/>
+
+    <Label text="Pagamento/Adiantamento (opcional):"/>
+    <TextField fx:id="campoValorPagamento" promptText="Valor (ex: 500.00)" prefWidth="300"/>
+    <ComboBox fx:id="comboTipoPagamento" prefWidth="300"/>
+
     <Button text="Salvar" prefWidth="150" onAction="#salvar"/>
 
     <Label fx:id="labelMensagem"/>
