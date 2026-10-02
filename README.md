@@ -31,12 +31,11 @@ Além de uso real pela empresa, este projeto também serve como estudo prático 
 - Cadastro de serviços (obras), com vínculo a escola e seleção múltipla de funcionários
 - Anexação de documentos (orçamentos, comprovantes) por serviço
 - Lançamento de pagamentos/adiantamentos por serviço
-- Cadastro de escolas e funcionários (camada de dados e regras de negócio)
+- Cadastro de escolas e funcionários, com tela própria de Cadastro de Funcionários
+- Tela de acompanhamento de serviços com filtro por status
 
 ## 🔜 Em desenvolvimento
 
-- Tela de acompanhamento de serviços com filtro por status
-- Tela de Cadastro de Funcionários
 - Testes automatizados (JUnit)
 - Empacotamento como executável
 
