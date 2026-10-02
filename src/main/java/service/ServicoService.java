@@ -3,6 +3,7 @@ package service;
 import dao.ServicoDAO;
 import model.Escola;
 import model.Servico;
+import model.StatusServico;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -26,4 +27,9 @@ public class ServicoService {
     public List<Servico> listarServicos() throws SQLException {
         return servicoDAO.listarTodos();
     }
+
+    public List<Servico> listarPorStatus(StatusServico status) throws SQLException {
+        return servicoDAO.listarPorStatus(status);
+    }
+
 }

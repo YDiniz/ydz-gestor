@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="TOP_CENTER" spacing="12" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controller.AcompanharServicosController">
+
+    <padding>
+        <Insets top="30" right="30" bottom="30" left="30"/>
+    </padding>
+
+    <Label text="Acompanhar Serviços" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+
+    <Label text="Filtrar por status:"/>
+    <ComboBox fx:id="comboFiltroStatus" prefWidth="250"/>
+
+    <ListView fx:id="listaServicos" prefHeight="300" prefWidth="400"/>
+
+</VBox>

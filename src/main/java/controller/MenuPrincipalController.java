@@ -21,12 +21,12 @@ public class MenuPrincipalController {
 
     @FXML
     public void abrirListaServicos() {
-        System.out.println("Abrir tela de lista de serviços (ainda não implementada)");
+        navegarPara("/views/AcompanharServicos.fxml");
     }
 
     @FXML
     public void abrirFuncionarios() {
-        System.out.println("Abrir tela de funcionários (ainda não implementada)");
+        navegarPara("/views/CadastroFuncionario.fxml");
     }
 
     private void navegarPara(String caminhoFxml) {

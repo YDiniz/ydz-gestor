@@ -3,6 +3,8 @@ package dao;
 import db.ConexaoBanco;
 import model.Servico;
 import model.Escola;
+import model.StatusServico;
+
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -85,5 +87,18 @@ public class ServicoDAO {
             }
         }
         return servicos;
+    }
+
+    public List<Servico> listarPorStatus(StatusServico status) throws SQLException {
+        List<Servico> todos = listarTodos();
+        List<Servico> filtrados = new ArrayList<>();
+
+        for (Servico s : todos) {
+            if (s.getStatus() == status) {
+                filtrados.add(s);
+            }
+        }
+
+        return filtrados;
     }
 }

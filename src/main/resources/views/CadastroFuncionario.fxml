@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="TOP_CENTER" spacing="12" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controller.CadastroFuncionarioController">
+
+    <padding>
+        <Insets top="30" right="30" bottom="30" left="30"/>
+    </padding>
+
+    <Label text="Cadastro de Funcionários" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+
+    <Label text="Nome:"/>
+    <TextField fx:id="campoNome" prefWidth="300"/>
+
+    <Label text="Cargo:"/>
+    <TextField fx:id="campoCargo" prefWidth="300"/>
+
+    <Button text="Salvar" prefWidth="150" onAction="#salvar"/>
+
+    <Label fx:id="labelMensagem"/>
+
+    <Label text="Funcionários cadastrados:" style="-fx-font-weight: bold;"/>
+    <ListView fx:id="listaFuncionarios" prefHeight="150" prefWidth="300"/>
+
+</VBox>
