@@ -33,10 +33,10 @@ Além de uso real pela empresa, este projeto também serve como estudo prático 
 - Lançamento de pagamentos/adiantamentos por serviço
 - Cadastro de escolas e funcionários, com tela própria de Cadastro de Funcionários
 - Tela de acompanhamento de serviços com filtro por status
+- Testes automatizados (JUnit) na camada de serviço
 
 ## 🔜 Em desenvolvimento
 
-- Testes automatizados (JUnit)
 - Empacotamento como executável
 
 ## 🏗️ Arquitetura
