@@ -65,4 +65,19 @@ public class AcompanharServicosController {
             listaServicos.setItems(FXCollections.observableArrayList());
         }
     }
+
+    @FXML
+    public void voltarAoMenu() {
+        try {
+            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource("/views/MenuPrincipal.fxml"));
+            javafx.scene.Parent raiz = loader.load();
+
+            javafx.stage.Stage stage = (javafx.stage.Stage) listaServicos.getScene().getWindow();
+            stage.setScene(new javafx.scene.Scene(raiz));
+
+        } catch (java.io.IOException e) {
+            System.out.println("Erro ao voltar ao menu: " + e.getMessage());
+        }
+
+    }
 }

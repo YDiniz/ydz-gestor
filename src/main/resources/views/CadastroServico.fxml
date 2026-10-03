@@ -17,6 +17,8 @@
 
     <Label text="Novo Serviço" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
 
+    <Button text="← Voltar ao Menu" onAction="#voltarAoMenu"/>
+
     <Label text="Nome do serviço:"/>
     <TextField fx:id="campoNome" prefWidth="300"/>
 
@@ -37,7 +39,7 @@
     <TextField fx:id="campoValorPagamento" promptText="Valor (ex: 500.00)" prefWidth="300"/>
     <ComboBox fx:id="comboTipoPagamento" prefWidth="300"/>
 
-    <Button text="Salvar" prefWidth="150" onAction="#salvar"/>
+    <Button text="Salvar" prefWidth="150" onAction="#salvar" defaultButton="true"/>
 
     <Label fx:id="labelMensagem"/>
 

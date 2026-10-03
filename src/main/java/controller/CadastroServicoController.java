@@ -156,4 +156,19 @@ public class CadastroServicoController {
             labelMensagem.setText("Erro ao salvar no banco.");
         }
     }
+
+    @FXML
+    public void voltarAoMenu() {
+        try {
+            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource("/views/MenuPrincipal.fxml"));
+            javafx.scene.Parent raiz = loader.load();
+
+            javafx.stage.Stage stage = (javafx.stage.Stage) campoNome.getScene().getWindow();
+            stage.setScene(new javafx.scene.Scene(raiz));
+
+        } catch (java.io.IOException e) {
+            System.out.println("Erro ao voltar ao menu: " + e.getMessage());
+        }
+    }
+
 }

@@ -17,13 +17,15 @@
 
     <Label text="Cadastro de Funcionários" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
 
+    <Button text="← Voltar ao Menu" onAction="#voltarAoMenu"/>
+
     <Label text="Nome:"/>
     <TextField fx:id="campoNome" prefWidth="300"/>
 
     <Label text="Cargo:"/>
     <TextField fx:id="campoCargo" prefWidth="300"/>
 
-    <Button text="Salvar" prefWidth="150" onAction="#salvar"/>
+    <Button text="Salvar" prefWidth="150" onAction="#salvar" defaultButton="true"/>
 
     <Label fx:id="labelMensagem"/>
 

@@ -20,7 +20,7 @@
     <TextField fx:id="campoLogin" promptText="Usuário" prefWidth="220"/>
     <PasswordField fx:id="campoSenha" promptText="Senha" prefWidth="220"/>
 
-    <Button text="Entrar" prefWidth="220" onAction="#entrar"/>
+    <Button text="Entrar" prefWidth="220" onAction="#entrar" defaultButton="true"/>
 
     <Label fx:id="labelErro" style="-fx-text-fill: red;"/>
 

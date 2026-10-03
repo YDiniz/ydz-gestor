@@ -6,6 +6,7 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.Button?>
 <VBox alignment="TOP_CENTER" spacing="12" xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="controller.AcompanharServicosController">
@@ -15,6 +16,8 @@
     </padding>
 
     <Label text="Acompanhar Serviços" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+
+    <Button text="← Voltar ao Menu" onAction="#voltarAoMenu"/>
 
     <Label text="Filtrar por status:"/>
     <ComboBox fx:id="comboFiltroStatus" prefWidth="250"/>

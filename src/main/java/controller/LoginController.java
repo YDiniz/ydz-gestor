@@ -57,4 +57,5 @@ public class LoginController {
             labelErro.setText("Erro ao abrir a próxima tela.");
         }
     }
+
 }
