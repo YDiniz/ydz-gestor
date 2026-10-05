@@ -50,12 +50,15 @@ public class LoginController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/MenuPrincipal.fxml"));
             Parent raiz = loader.load();
 
+            Scene cena = new Scene(raiz, 700, 750);
+            cena.getStylesheets().add(getClass().getResource("/css/estilo-azul.css").toExternalForm());
+
             Stage stage = (Stage) campoLogin.getScene().getWindow();
-            stage.setScene(new Scene(raiz));
+            stage.setScene(cena);
 
         } catch (IOException e) {
             labelErro.setText("Erro ao abrir a próxima tela.");
         }
     }
-
 }
+

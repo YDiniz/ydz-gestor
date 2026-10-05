@@ -3,12 +3,17 @@ package controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
+import javafx.stage.Stage;
 import model.Servico;
 import model.StatusServico;
 import service.ServicoService;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class AcompanharServicosController {
@@ -69,15 +74,17 @@ public class AcompanharServicosController {
     @FXML
     public void voltarAoMenu() {
         try {
-            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource("/views/MenuPrincipal.fxml"));
-            javafx.scene.Parent raiz = loader.load();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/MenuPrincipal.fxml"));
+            Parent raiz = loader.load();
 
-            javafx.stage.Stage stage = (javafx.stage.Stage) listaServicos.getScene().getWindow();
-            stage.setScene(new javafx.scene.Scene(raiz));
+            Scene cena = new Scene(raiz, 700, 750);
+            cena.getStylesheets().add(getClass().getResource("/css/estilo-azul.css").toExternalForm());
 
-        } catch (java.io.IOException e) {
+            Stage stage = (Stage) listaServicos.getScene().getWindow();
+            stage.setScene(cena);
+
+        } catch (IOException e) {
             System.out.println("Erro ao voltar ao menu: " + e.getMessage());
         }
-
     }
 }

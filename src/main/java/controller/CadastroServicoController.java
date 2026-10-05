@@ -3,25 +3,29 @@ package controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import model.Escola;
 import model.Funcionario;
 import model.TipoDocumento;
 import model.TipoPagamento;
-import org.controlsfx.control.CheckComboBox;
 import service.DocumentoService;
 import service.EscolaService;
 import service.FuncionarioService;
 import service.PagamentoService;
 import service.ServicoService;
 
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
@@ -37,7 +41,7 @@ public class CadastroServicoController {
     private ComboBox<Escola> comboEscola;
 
     @FXML
-    private VBox containerFuncionarios;
+    private ListView<Funcionario> listaFuncionarios;
 
     @FXML
     private Label labelMensagem;
@@ -57,7 +61,6 @@ public class CadastroServicoController {
     private DocumentoService documentoService = new DocumentoService();
     private PagamentoService pagamentoService = new PagamentoService();
 
-    private CheckComboBox<Funcionario> comboFuncionarios;
     private File arquivoSelecionado;
 
     @FXML
@@ -78,21 +81,16 @@ public class CadastroServicoController {
             });
 
             ObservableList<Funcionario> funcionarios = FXCollections.observableArrayList(funcionarioService.listarFuncionarios());
-            comboFuncionarios = new CheckComboBox<>(funcionarios);
-            comboFuncionarios.setPrefWidth(300);
+            listaFuncionarios.setItems(funcionarios);
+            listaFuncionarios.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
-            comboFuncionarios.setConverter(new StringConverter<Funcionario>() {
+            listaFuncionarios.setCellFactory(lv -> new javafx.scene.control.ListCell<Funcionario>() {
                 @Override
-                public String toString(Funcionario funcionario) {
-                    return funcionario != null ? funcionario.getNome() : "";
-                }
-                @Override
-                public Funcionario fromString(String string) {
-                    return null;
+                protected void updateItem(Funcionario funcionario, boolean vazio) {
+                    super.updateItem(funcionario, vazio);
+                    setText(vazio || funcionario == null ? "" : funcionario.getNome());
                 }
             });
-
-            containerFuncionarios.getChildren().add(comboFuncionarios);
 
         } catch (SQLException e) {
             labelMensagem.setText("Erro ao carregar dados.");
@@ -125,7 +123,7 @@ public class CadastroServicoController {
         try {
             int servicoId = servicoService.cadastrarServico(nome, tipoObra, escolaSelecionada);
 
-            for (Funcionario funcionario : comboFuncionarios.getCheckModel().getCheckedItems()) {
+            for (Funcionario funcionario : listaFuncionarios.getSelectionModel().getSelectedItems()) {
                 funcionarioService.vincularAoServico(funcionario.getId(), servicoId);
             }
 
@@ -144,7 +142,7 @@ public class CadastroServicoController {
             campoNome.clear();
             campoTipoObra.clear();
             comboEscola.setValue(null);
-            comboFuncionarios.getCheckModel().clearChecks();
+            listaFuncionarios.getSelectionModel().clearSelection();
             arquivoSelecionado = null;
             labelArquivoSelecionado.setText("");
             campoValorPagamento.clear();
@@ -160,15 +158,17 @@ public class CadastroServicoController {
     @FXML
     public void voltarAoMenu() {
         try {
-            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource("/views/MenuPrincipal.fxml"));
-            javafx.scene.Parent raiz = loader.load();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/MenuPrincipal.fxml"));
+            Parent raiz = loader.load();
 
-            javafx.stage.Stage stage = (javafx.stage.Stage) campoNome.getScene().getWindow();
-            stage.setScene(new javafx.scene.Scene(raiz));
+            Scene cena = new Scene(raiz, 700, 750);
+            cena.getStylesheets().add(getClass().getResource("/css/estilo-azul.css").toExternalForm());
 
-        } catch (java.io.IOException e) {
+            Stage stage = (Stage) campoNome.getScene().getWindow();
+            stage.setScene(cena);
+
+        } catch (IOException e) {
             System.out.println("Erro ao voltar ao menu: " + e.getMessage());
         }
     }
-
 }

@@ -5,31 +5,35 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="TOP_CENTER" spacing="12" xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="controller.CadastroFuncionarioController">
+<StackPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+           fx:controller="controller.CadastroFuncionarioController" styleClass="root">
 
-    <padding>
-        <Insets top="30" right="30" bottom="30" left="30"/>
-    </padding>
+    <VBox alignment="TOP_CENTER" spacing="12" maxWidth="400" styleClass="card">
 
-    <Label text="Cadastro de Funcionários" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+        <padding>
+            <Insets top="30" right="30" bottom="30" left="30"/>
+        </padding>
 
-    <Button text="← Voltar ao Menu" onAction="#voltarAoMenu"/>
+        <Label text="Cadastro de Funcionários" styleClass="label-titulo"/>
 
-    <Label text="Nome:"/>
-    <TextField fx:id="campoNome" prefWidth="300"/>
+        <Button text="← Voltar ao Menu" onAction="#voltarAoMenu"/>
 
-    <Label text="Cargo:"/>
-    <TextField fx:id="campoCargo" prefWidth="300"/>
+        <Label text="Nome:"/>
+        <TextField fx:id="campoNome" prefWidth="300"/>
 
-    <Button text="Salvar" prefWidth="150" onAction="#salvar" defaultButton="true"/>
+        <Label text="Cargo:"/>
+        <TextField fx:id="campoCargo" prefWidth="300"/>
 
-    <Label fx:id="labelMensagem"/>
+        <Button text="Salvar" prefWidth="150" onAction="#salvar" defaultButton="true"/>
 
-    <Label text="Funcionários cadastrados:" style="-fx-font-weight: bold;"/>
-    <ListView fx:id="listaFuncionarios" prefHeight="150" prefWidth="300"/>
+        <Label fx:id="labelMensagem"/>
 
-</VBox>
+        <Label text="Funcionários cadastrados:" style="-fx-font-weight: bold;"/>
+        <ListView fx:id="listaFuncionarios" prefHeight="150" prefWidth="300"/>
+
+    </VBox>
+
+</StackPane>

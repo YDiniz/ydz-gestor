@@ -34,8 +34,11 @@ public class MenuPrincipalController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(caminhoFxml));
             Parent raiz = loader.load();
 
+            Scene cena = new Scene(raiz, 700, 750);
+            cena.getStylesheets().add(getClass().getResource("/css/estilo-azul.css").toExternalForm());
+
             Stage stage = (Stage) botaoNovoServico.getScene().getWindow();
-            stage.setScene(new Scene(raiz));
+            stage.setScene(cena);
 
         } catch (IOException e) {
             System.out.println("Erro ao abrir tela: " + e.getMessage());

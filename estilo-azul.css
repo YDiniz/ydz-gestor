@@ -1,0 +1,40 @@
+.root {
+    -fx-background-color: #F4F6F8;
+    -fx-font-family: "Segoe UI";
+}
+
+.label-titulo {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #0C447C;
+}
+
+.label {
+    -fx-text-fill: #2C2C2A;
+}
+
+.text-field, .combo-box, .list-view, .check-combo-box {
+    -fx-background-color: white;
+    -fx-background-radius: 6;
+    -fx-border-color: #B5D4F4;
+    -fx-border-radius: 6;
+    -fx-padding: 4;
+}
+
+.button {
+    -fx-background-color: #378ADD;
+    -fx-text-fill: white;
+    -fx-background-radius: 6;
+    -fx-padding: 8 20;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #185FA5;
+}
+
+.card {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-padding: 24;
+}

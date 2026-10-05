@@ -5,42 +5,47 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="TOP_CENTER" spacing="12" xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="controller.CadastroServicoController">
+<?import javafx.scene.control.ListView?>
+<StackPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+           fx:controller="controller.CadastroServicoController" styleClass="root">
 
-    <padding>
-        <Insets top="30" right="30" bottom="30" left="30"/>
-    </padding>
+    <VBox alignment="TOP_CENTER" spacing="12" maxWidth="400" styleClass="card">
 
-    <Label text="Novo Serviço" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+        <padding>
+            <Insets top="30" right="30" bottom="30" left="30"/>
+        </padding>
 
-    <Button text="← Voltar ao Menu" onAction="#voltarAoMenu"/>
+        <Label text="Novo Serviço" styleClass="label-titulo"/>
 
-    <Label text="Nome do serviço:"/>
-    <TextField fx:id="campoNome" prefWidth="300"/>
+        <Button text="← Voltar ao Menu" onAction="#voltarAoMenu"/>
 
-    <Label text="Tipo da obra:"/>
-    <TextField fx:id="campoTipoObra" prefWidth="300"/>
+        <Label text="Nome do serviço:"/>
+        <TextField fx:id="campoNome" prefWidth="300" maxWidth="300"/>
 
-    <Label text="Escola:"/>
-    <ComboBox fx:id="comboEscola" prefWidth="300"/>
+        <Label text="Tipo da obra:"/>
+        <TextField fx:id="campoTipoObra" prefWidth="300" maxWidth="300"/>
 
-    <Label text="Funcionários:"/>
-    <VBox fx:id="containerFuncionarios" prefWidth="300"/>
+        <Label text="Escola:"/>
+        <ComboBox fx:id="comboEscola" prefWidth="300" maxWidth="300"/>
 
-    <Label text="Anexar orçamento (opcional):"/>
-    <Button text="Selecionar Arquivo" prefWidth="200" onAction="#selecionarArquivo"/>
-    <Label fx:id="labelArquivoSelecionado" style="-fx-font-size: 11px; -fx-text-fill: gray;"/>
+        <Label text="Funcionários (segure Ctrl para selecionar vários):"/>
+        <ListView fx:id="listaFuncionarios" prefHeight="100" prefWidth="300" maxWidth="300"/>
 
-    <Label text="Pagamento/Adiantamento (opcional):"/>
-    <TextField fx:id="campoValorPagamento" promptText="Valor (ex: 500.00)" prefWidth="300"/>
-    <ComboBox fx:id="comboTipoPagamento" prefWidth="300"/>
+        <Label text="Anexar orçamento (opcional):"/>
+        <Button text="Selecionar Arquivo" prefWidth="200" onAction="#selecionarArquivo"/>
+        <Label fx:id="labelArquivoSelecionado" style="-fx-font-size: 11px; -fx-text-fill: gray;"/>
 
-    <Button text="Salvar" prefWidth="150" onAction="#salvar" defaultButton="true"/>
+        <Label text="Pagamento/Adiantamento (opcional):"/>
+        <TextField fx:id="campoValorPagamento" promptText="Valor (ex: 500.00)" prefWidth="300" maxWidth="300"/>
+        <ComboBox fx:id="comboTipoPagamento" prefWidth="300" maxWidth="300"/>
 
-    <Label fx:id="labelMensagem"/>
+        <Button text="Salvar" prefWidth="150" onAction="#salvar" defaultButton="true"/>
 
-</VBox>
+        <Label fx:id="labelMensagem"/>
+
+    </VBox>
+
+</StackPane>
