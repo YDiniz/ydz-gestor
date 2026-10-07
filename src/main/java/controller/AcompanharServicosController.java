@@ -8,10 +8,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Servico;
 import model.StatusServico;
 import service.ServicoService;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.stage.Modality;
+import java.io.IOException;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -40,6 +45,15 @@ public class AcompanharServicosController {
                     setText("");
                 } else {
                     setText(servico.getNome() + " - " + servico.getEscola().getNome() + " [" + servico.getStatus() + "]");
+                }
+            }
+        });
+
+        listaServicos.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) {
+                Servico selecionado = listaServicos.getSelectionModel().getSelectedItem();
+                if (selecionado != null) {
+                    abrirDetalhes(selecionado);
                 }
             }
         });
@@ -85,6 +99,27 @@ public class AcompanharServicosController {
 
         } catch (IOException e) {
             System.out.println("Erro ao voltar ao menu: " + e.getMessage());
+        }
+    }
+
+    private void abrirDetalhes(Servico servico) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/DetalheServico.fxml"));
+            Parent raiz = loader.load();
+
+            DetalheServicoController controller = loader.getController();
+            controller.carregarServico(servico);
+
+            Stage modal = new Stage();
+            modal.setTitle("Detalhes do Serviço");
+            Scene cena = new Scene(raiz, 400, 600);
+            cena.getStylesheets().add(getClass().getResource("/css/estilo-azul.css").toExternalForm());
+            modal.setScene(cena);
+            modal.initModality(Modality.APPLICATION_MODAL);
+            modal.show();
+
+        } catch (IOException e) {
+            System.out.println("Erro ao abrir detalhes: " + e.getMessage());
         }
     }
 }
