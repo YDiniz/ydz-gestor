@@ -20,6 +20,7 @@
         <Button fx:id="botaoNovoServico" text="Novo Serviço" prefWidth="200" onAction="#abrirNovoServico"/>
         <Button text="Acompanhar Serviços" prefWidth="200" onAction="#abrirListaServicos"/>
         <Button text="Funcionários" prefWidth="200" onAction="#abrirFuncionarios"/>
+        <Button text="Escolas" prefWidth="200" onAction="#abrirEscolas"/>
 
     </VBox>
 

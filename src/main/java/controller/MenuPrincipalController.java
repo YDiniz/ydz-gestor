@@ -25,6 +25,11 @@ public class MenuPrincipalController {
     }
 
     @FXML
+    public void abrirEscolas() {
+        navegarPara("/views/MenuEscolas.fxml");
+    }
+
+    @FXML
     public void abrirFuncionarios() {
         navegarPara("/views/CadastroFuncionario.fxml");
     }
