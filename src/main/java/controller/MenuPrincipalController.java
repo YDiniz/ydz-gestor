@@ -34,6 +34,11 @@ public class MenuPrincipalController {
         navegarPara("/views/MenuFuncionarios.fxml");
     }
 
+    @FXML
+    public void abrirPagamentos() {
+        navegarPara("/views/Pagamentos.fxml");
+    }
+
     private void navegarPara(String caminhoFxml) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(caminhoFxml));

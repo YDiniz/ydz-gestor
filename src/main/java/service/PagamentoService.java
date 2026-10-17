@@ -1,6 +1,8 @@
 package service;
 
 import dao.PagamentoDAO;
+import model.CategoriaGasto;
+import model.DirecaoPagamento;
 import model.Pagamento;
 import model.TipoPagamento;
 
@@ -12,7 +14,9 @@ public class PagamentoService {
 
     private PagamentoDAO pagamentoDAO = new PagamentoDAO();
 
-    public void lancarPagamento(LocalDate data, double valor, TipoPagamento tipo, int servicoId) throws SQLException {
+    public void lancarPagamento(LocalDate data, double valor, TipoPagamento tipo,
+                                DirecaoPagamento direcao, CategoriaGasto categoria,
+                                String descricao, int servicoId) throws SQLException {
         if (data == null) {
             throw new IllegalArgumentException("A data do pagamento é obrigatória.");
         }
@@ -22,8 +26,19 @@ public class PagamentoService {
         if (tipo == null) {
             throw new IllegalArgumentException("O tipo do pagamento é obrigatório.");
         }
+        if (direcao == null) {
+            throw new IllegalArgumentException("Informe se o pagamento foi recebido ou realizado.");
+        }
+        if (direcao == DirecaoPagamento.REALIZADO && categoria == null) {
+            throw new IllegalArgumentException("Informe se o gasto foi com funcionário ou material.");
+        }
+        if (servicoId <= 0) {
+            throw new IllegalArgumentException("Selecione o serviço do pagamento.");
+        }
 
-        Pagamento pagamento = new Pagamento(0, data, valor, tipo);
+        CategoriaGasto categoriaFinal = direcao == DirecaoPagamento.REALIZADO ? categoria : null;
+
+        Pagamento pagamento = new Pagamento(0, data, valor, tipo, direcao, categoriaFinal, descricao);
         pagamentoDAO.salvar(pagamento, servicoId);
     }
 
@@ -32,13 +47,20 @@ public class PagamentoService {
     }
 
     public double calcularTotalPago(int servicoId) throws SQLException {
-        List<Pagamento> pagamentos = pagamentoDAO.listarPorServico(servicoId);
         double total = 0;
-
-        for (Pagamento p : pagamentos) {
+        for (Pagamento p : pagamentoDAO.listarPorServico(servicoId)) {
             total += p.getValor();
         }
+        return total;
+    }
 
+    public double calcularTotal(int servicoId, DirecaoPagamento direcao) throws SQLException {
+        double total = 0;
+        for (Pagamento p : pagamentoDAO.listarPorServico(servicoId)) {
+            if (p.getDirecao() == direcao) {
+                total += p.getValor();
+            }
+        }
         return total;
     }
 }

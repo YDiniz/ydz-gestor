@@ -7,12 +7,43 @@ public class Pagamento {
     private LocalDate data;
     private double valor;
     private TipoPagamento tipo;
+    private DirecaoPagamento direcao;
+    private CategoriaGasto categoria;
+    private String descricao;
 
-    public Pagamento(int id, LocalDate data, double valor, TipoPagamento tipo) {
+    public DirecaoPagamento getDirecao() {
+        return direcao;
+    }
+
+    public void setDirecao(DirecaoPagamento direcao) {
+        this.direcao = direcao;
+    }
+
+    public CategoriaGasto getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(CategoriaGasto categoria) {
+        this.categoria = categoria;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public Pagamento(int id, LocalDate data, double valor, TipoPagamento tipo,
+                     DirecaoPagamento direcao, CategoriaGasto categoria, String descricao) {
         this.id = id;
         this.data = data;
         this.valor = valor;
         this.tipo = tipo;
+        this.direcao = direcao;
+        this.categoria = categoria;
+        this.descricao = descricao;
     }
 
     public int getId() {

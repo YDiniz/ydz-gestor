@@ -1,5 +1,6 @@
 package service;
 
+import model.DirecaoPagamento;
 import model.TipoPagamento;
 import org.junit.jupiter.api.Test;
 
@@ -9,21 +10,33 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class PagamentoServiceTest {
 
+    private PagamentoService pagamentoService = new PagamentoService();
+
     @Test
     public void naoDevePermitirPagamentoComValorNegativo() {
-        PagamentoService pagamentoService = new PagamentoService();
-
-        assertThrows(IllegalArgumentException.class, () -> {
-            pagamentoService.lancarPagamento(LocalDate.now(), -100.0, TipoPagamento.ADIANTAMENTO, 1);
-        });
+        assertThrows(IllegalArgumentException.class, () ->
+                pagamentoService.lancarPagamento(LocalDate.now(), -100.0, TipoPagamento.ADIANTAMENTO,
+                        DirecaoPagamento.RECEBIDO, null, null, 1));
     }
 
     @Test
     public void naoDevePermitirPagamentoComValorZero() {
-        PagamentoService pagamentoService = new PagamentoService();
+        assertThrows(IllegalArgumentException.class, () ->
+                pagamentoService.lancarPagamento(LocalDate.now(), 0.0, TipoPagamento.ADIANTAMENTO,
+                        DirecaoPagamento.RECEBIDO, null, null, 1));
+    }
 
-        assertThrows(IllegalArgumentException.class, () -> {
-            pagamentoService.lancarPagamento(LocalDate.now(), 0.0, TipoPagamento.ADIANTAMENTO, 1);
-        });
+    @Test
+    public void naoDevePermitirGastoRealizadoSemCategoria() {
+        assertThrows(IllegalArgumentException.class, () ->
+                pagamentoService.lancarPagamento(LocalDate.now(), 100.0, TipoPagamento.PAGAMENTO,
+                        DirecaoPagamento.REALIZADO, null, "Teste", 1));
+    }
+
+    @Test
+    public void naoDevePermitirPagamentoSemServico() {
+        assertThrows(IllegalArgumentException.class, () ->
+                pagamentoService.lancarPagamento(LocalDate.now(), 100.0, TipoPagamento.PAGAMENTO,
+                        DirecaoPagamento.RECEBIDO, null, null, 0));
     }
 }

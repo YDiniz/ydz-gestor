@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+           fx:controller="controller.PagamentosController" styleClass="root">
+
+    <VBox alignment="TOP_CENTER" spacing="8" maxWidth="400" styleClass="card">
+
+        <padding>
+            <Insets top="30" right="30" bottom="30" left="30"/>
+        </padding>
+
+        <fx:define>
+            <ToggleGroup fx:id="grupoDirecao"/>
+        </fx:define>
+
+        <Label text="Pagamentos" styleClass="label-titulo"/>
+
+        <Button text="← Voltar ao Menu" onAction="#voltarAoMenu"/>
+
+        <HBox alignment="CENTER" spacing="30">
+            <RadioButton fx:id="radioRecebido" text="Recebido" toggleGroup="$grupoDirecao" selected="true"/>
+            <RadioButton fx:id="radioRealizado" text="Realizado" toggleGroup="$grupoDirecao"/>
+        </HBox>
+
+        <Label text="Recebido = a escola nos pagou | Realizado = nós pagamos (funcionário ou material)"
+               style="-fx-font-size: 11px; -fx-text-fill: gray;" wrapText="true"/>
+
+        <Label text="Serviço:"/>
+        <ComboBox fx:id="comboServico" prefWidth="300" maxWidth="300"/>
+
+        <Label text="Tipo:"/>
+        <ComboBox fx:id="comboTipo" prefWidth="300" maxWidth="300"/>
+
+        <Label fx:id="labelCategoria" text="Gasto com:"/>
+        <ComboBox fx:id="comboCategoria" prefWidth="300" maxWidth="300"/>
+
+        <Label text="Descrição (opcional):"/>
+        <TextField fx:id="campoDescricao" prefWidth="300" maxWidth="300"/>
+
+        <HBox alignment="CENTER" spacing="10">
+            <VBox spacing="4">
+                <Label text="Valor (R$):"/>
+                <TextField fx:id="campoValor" promptText="500,00" prefWidth="145"/>
+            </VBox>
+            <VBox spacing="4">
+                <Label text="Data:"/>
+                <DatePicker fx:id="campoData" prefWidth="145"/>
+            </VBox>
+        </HBox>
+
+        <Button text="Salvar" prefWidth="150" onAction="#salvar" defaultButton="true"/>
+
+        <Label fx:id="labelMensagem"/>
+
+    </VBox>
+
+</StackPane>

@@ -3,11 +3,9 @@ package controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
@@ -17,17 +15,14 @@ import javafx.util.StringConverter;
 import model.Escola;
 import model.Funcionario;
 import model.TipoDocumento;
-import model.TipoPagamento;
 import service.DocumentoService;
 import service.EscolaService;
 import service.FuncionarioService;
-import service.PagamentoService;
 import service.ServicoService;
+import util.Navegador;
 
 import java.io.File;
-import java.io.IOException;
 import java.sql.SQLException;
-import java.time.LocalDate;
 
 public class CadastroServicoController {
 
@@ -49,17 +44,10 @@ public class CadastroServicoController {
     @FXML
     private Label labelArquivoSelecionado;
 
-    @FXML
-    private TextField campoValorPagamento;
-
-    @FXML
-    private ComboBox<TipoPagamento> comboTipoPagamento;
-
     private EscolaService escolaService = new EscolaService();
     private ServicoService servicoService = new ServicoService();
     private FuncionarioService funcionarioService = new FuncionarioService();
     private DocumentoService documentoService = new DocumentoService();
-    private PagamentoService pagamentoService = new PagamentoService();
 
     private File arquivoSelecionado;
 
@@ -68,7 +56,6 @@ public class CadastroServicoController {
         try {
             ObservableList<Escola> escolas = FXCollections.observableArrayList(escolaService.listarEscolas());
             comboEscola.setItems(escolas);
-            comboTipoPagamento.setItems(FXCollections.observableArrayList(TipoPagamento.values()));
             comboEscola.setConverter(new StringConverter<Escola>() {
                 @Override
                 public String toString(Escola escola) {
@@ -84,7 +71,7 @@ public class CadastroServicoController {
             listaFuncionarios.setItems(funcionarios);
             listaFuncionarios.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
-            listaFuncionarios.setCellFactory(lv -> new javafx.scene.control.ListCell<Funcionario>() {
+            listaFuncionarios.setCellFactory(lv -> new ListCell<Funcionario>() {
                 @Override
                 protected void updateItem(Funcionario funcionario, boolean vazio) {
                     super.updateItem(funcionario, vazio);
@@ -131,13 +118,6 @@ public class CadastroServicoController {
                 documentoService.anexarDocumento(TipoDocumento.ORCAMENTO, arquivoSelecionado.getAbsolutePath(), servicoId);
             }
 
-            String valorTexto = campoValorPagamento.getText();
-            if (!valorTexto.isBlank()) {
-                double valor = Double.parseDouble(valorTexto);
-                TipoPagamento tipoPagamento = comboTipoPagamento.getValue();
-                pagamentoService.lancarPagamento(LocalDate.now(), valor, tipoPagamento, servicoId);
-            }
-
             labelMensagem.setText("Serviço cadastrado com sucesso!");
             campoNome.clear();
             campoTipoObra.clear();
@@ -145,8 +125,6 @@ public class CadastroServicoController {
             listaFuncionarios.getSelectionModel().clearSelection();
             arquivoSelecionado = null;
             labelArquivoSelecionado.setText("");
-            campoValorPagamento.clear();
-            comboTipoPagamento.setValue(null);
 
         } catch (IllegalArgumentException e) {
             labelMensagem.setText(e.getMessage());
@@ -157,18 +135,6 @@ public class CadastroServicoController {
 
     @FXML
     public void voltarAoMenu() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/MenuPrincipal.fxml"));
-            Parent raiz = loader.load();
-
-            Scene cena = new Scene(raiz, 700, 750);
-            cena.getStylesheets().add(getClass().getResource("/css/estilo-azul.css").toExternalForm());
-
-            Stage stage = (Stage) campoNome.getScene().getWindow();
-            stage.setScene(cena);
-
-        } catch (IOException e) {
-            System.out.println("Erro ao voltar ao menu: " + e.getMessage());
-        }
+        Navegador.irPara(campoNome, "/views/MenuPrincipal.fxml");
     }
 }
