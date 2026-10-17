@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+           fx:controller="controller.ListaFuncionariosController" styleClass="root">
+
+    <VBox alignment="TOP_CENTER" spacing="12" maxWidth="400" styleClass="card">
+
+        <padding>
+            <Insets top="30" right="30" bottom="30" left="30"/>
+        </padding>
+
+        <Label text="Funcionários Cadastrados" styleClass="label-titulo"/>
+
+        <Button text="← Voltar" onAction="#voltar"/>
+
+        <Label text="Dê um duplo clique no funcionário para ver os dados"
+               style="-fx-font-size: 11px; -fx-text-fill: gray;"/>
+
+        <ListView fx:id="listaFuncionarios" prefHeight="400" prefWidth="320" maxWidth="320"/>
+
+        <Label fx:id="labelMensagem"/>
+
+    </VBox>
+
+</StackPane>

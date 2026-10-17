@@ -31,7 +31,7 @@ public class MenuPrincipalController {
 
     @FXML
     public void abrirFuncionarios() {
-        navegarPara("/views/CadastroFuncionario.fxml");
+        navegarPara("/views/MenuFuncionarios.fxml");
     }
 
     private void navegarPara(String caminhoFxml) {
