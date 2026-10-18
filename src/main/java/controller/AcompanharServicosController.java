@@ -17,6 +17,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.stage.Modality;
 import java.io.IOException;
+import javafx.scene.control.Alert;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -120,6 +121,42 @@ public class AcompanharServicosController {
 
         } catch (IOException e) {
             System.out.println("Erro ao abrir detalhes: " + e.getMessage());
+        }
+    }
+
+    @FXML
+    public void editarSelecionado() {
+        Servico selecionado = listaServicos.getSelectionModel().getSelectedItem();
+
+        if (selecionado == null) {
+            new Alert(Alert.AlertType.INFORMATION, "Selecione um serviço na lista.").showAndWait();
+            return;
+        }
+
+        abrirEdicao(selecionado);
+    }
+
+    private void abrirEdicao(Servico servico) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/EditarServico.fxml"));
+            Parent raiz = loader.load();
+
+            EditarServicoController controller = loader.getController();
+            controller.carregarServico(servico);
+
+            Scene cena = new Scene(raiz, 520, 700);
+            cena.getStylesheets().add(getClass().getResource("/css/estilo-azul.css").toExternalForm());
+
+            Stage modal = new Stage();
+            modal.setTitle("Editar Serviço");
+            modal.setScene(cena);
+            modal.initModality(Modality.APPLICATION_MODAL);
+            modal.showAndWait();
+
+            aplicarFiltro();
+
+        } catch (IOException e) {
+            System.out.println("Erro ao abrir edição: " + e.getMessage());
         }
     }
 }

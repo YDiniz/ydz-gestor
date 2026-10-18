@@ -26,4 +26,8 @@ public class DocumentoService {
     public List<Documento> listarDocumentosDoServico(int servicoId) throws SQLException {
         return documentoDAO.listarPorServico(servicoId);
     }
+
+    public void removerDocumento(int documentoId) throws SQLException {
+        documentoDAO.remover(documentoId);
+    }
 }

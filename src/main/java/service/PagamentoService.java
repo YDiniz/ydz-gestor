@@ -63,4 +63,8 @@ public class PagamentoService {
         }
         return total;
     }
+
+    public void removerPagamento(int pagamentoId) throws SQLException {
+        pagamentoDAO.remover(pagamentoId);
+    }
 }

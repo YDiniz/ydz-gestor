@@ -101,4 +101,17 @@ public class ServicoDAO {
 
         return filtrados;
     }
+
+    public void atualizarStatus(int servicoId, StatusServico status) throws SQLException {
+        String sql = "UPDATE servico SET status = ? WHERE id = ?";
+
+        try (Connection conexao = ConexaoBanco.conectar();
+             PreparedStatement stmt = conexao.prepareStatement(sql)) {
+
+            stmt.setString(1, status.name());
+            stmt.setInt(2, servicoId);
+
+            stmt.executeUpdate();
+        }
+    }
 }

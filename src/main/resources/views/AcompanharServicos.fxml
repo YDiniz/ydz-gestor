@@ -26,6 +26,8 @@
 
         <ListView fx:id="listaServicos" prefHeight="300" prefWidth="400"/>
 
+        <Button text="Editar serviço selecionado" onAction="#editarSelecionado"/>
+
     </VBox>
 
 </StackPane>

@@ -52,4 +52,15 @@ public class DocumentoDAO {
 
         return documentos;
     }
+
+    public void remover(int documentoId) throws SQLException {
+        String sql = "DELETE FROM documento WHERE id = ?";
+
+        try (Connection conexao = ConexaoBanco.conectar();
+             PreparedStatement stmt = conexao.prepareStatement(sql)) {
+
+            stmt.setInt(1, documentoId);
+            stmt.executeUpdate();
+        }
+    }
 }

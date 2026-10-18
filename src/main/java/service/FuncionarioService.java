@@ -37,4 +37,12 @@ public class FuncionarioService {
     public void vincularAoServico(int funcionarioId, int servicoId) throws SQLException {
         funcionarioDAO.vincularAoServico(funcionarioId, servicoId);
     }
+
+    public void desvincularDoServico(int funcionarioId, int servicoId) throws SQLException {
+        funcionarioDAO.desvincularDoServico(funcionarioId, servicoId);
+    }
+
+    public List<Funcionario> listarDoServico(int servicoId) throws SQLException {
+        return funcionarioDAO.listarPorServico(servicoId);
+    }
 }

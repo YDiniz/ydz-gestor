@@ -110,4 +110,17 @@ public class FuncionarioDAO {
             stmt.executeUpdate();
         }
     }
+
+    public void desvincularDoServico(int funcionarioId, int servicoId) throws SQLException {
+        String sql = "DELETE FROM servico_funcionario WHERE servico_id = ? AND funcionario_id = ?";
+
+        try (Connection conexao = ConexaoBanco.conectar();
+             PreparedStatement stmt = conexao.prepareStatement(sql)) {
+
+            stmt.setInt(1, servicoId);
+            stmt.setInt(2, funcionarioId);
+
+            stmt.executeUpdate();
+        }
+    }
 }

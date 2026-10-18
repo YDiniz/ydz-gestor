@@ -32,4 +32,11 @@ public class ServicoService {
         return servicoDAO.listarPorStatus(status);
     }
 
+    public void atualizarStatus(int servicoId, StatusServico status) throws SQLException {
+        if (status == null) {
+            throw new IllegalArgumentException("Selecione o status do serviço.");
+        }
+        servicoDAO.atualizarStatus(servicoId, status);
+    }
+
 }

@@ -63,4 +63,15 @@ public class PagamentoDAO {
 
         return pagamentos;
     }
+
+    public void remover(int pagamentoId) throws SQLException {
+        String sql = "DELETE FROM pagamento WHERE id = ?";
+
+        try (Connection conexao = ConexaoBanco.conectar();
+             PreparedStatement stmt = conexao.prepareStatement(sql)) {
+
+            stmt.setInt(1, pagamentoId);
+            stmt.executeUpdate();
+        }
+    }
 }
