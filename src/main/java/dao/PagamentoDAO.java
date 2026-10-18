@@ -74,4 +74,24 @@ public class PagamentoDAO {
             stmt.executeUpdate();
         }
     }
+
+    public void atualizar(Pagamento pagamento) throws SQLException {
+        String sql = "UPDATE pagamento SET data = ?, valor = ?, tipo = ?, direcao = ?, "
+                + "categoria = ?, descricao = ? WHERE id = ?";
+
+        try (Connection conexao = ConexaoBanco.conectar();
+             PreparedStatement stmt = conexao.prepareStatement(sql)) {
+
+            stmt.setObject(1, pagamento.getData());
+            stmt.setDouble(2, pagamento.getValor());
+            stmt.setString(3, pagamento.getTipo().name());
+            stmt.setString(4, pagamento.getDirecao().name());
+            stmt.setString(5, pagamento.getCategoria() != null ? pagamento.getCategoria().name() : null);
+            stmt.setString(6, pagamento.getDescricao());
+            stmt.setInt(7, pagamento.getId());
+
+            stmt.executeUpdate();
+        }
+    }
+
 }

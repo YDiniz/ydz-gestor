@@ -144,7 +144,7 @@ public class AcompanharServicosController {
             EditarServicoController controller = loader.getController();
             controller.carregarServico(servico);
 
-            Scene cena = new Scene(raiz, 520, 700);
+            Scene cena = new Scene(raiz, 680, 850);
             cena.getStylesheets().add(getClass().getResource("/css/estilo-azul.css").toExternalForm());
 
             Stage modal = new Stage();

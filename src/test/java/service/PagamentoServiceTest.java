@@ -39,4 +39,12 @@ public class PagamentoServiceTest {
                 pagamentoService.lancarPagamento(LocalDate.now(), 100.0, TipoPagamento.PAGAMENTO,
                         DirecaoPagamento.RECEBIDO, null, null, 0));
     }
+
+    @Test
+    public void naoDevePermitirAtualizarPagamentoComValorZero() {
+        assertThrows(IllegalArgumentException.class, () ->
+                pagamentoService.atualizarPagamento(1, LocalDate.now(), 0.0, TipoPagamento.PAGAMENTO,
+                        DirecaoPagamento.RECEBIDO, null, null));
+    }
+
 }

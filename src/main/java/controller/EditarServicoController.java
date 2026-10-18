@@ -21,6 +21,11 @@ import service.DocumentoService;
 import service.FuncionarioService;
 import service.PagamentoService;
 import service.ServicoService;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Modality;
+import java.io.IOException;
 
 import java.io.File;
 import java.sql.SQLException;
@@ -255,4 +260,58 @@ public class EditarServicoController {
         Stage stage = (Stage) labelNome.getScene().getWindow();
         stage.close();
     }
+
+    @FXML
+    public void editarPagamento() {
+        Pagamento pagamento = listaPagamentos.getSelectionModel().getSelectedItem();
+        if (pagamento == null) {
+            labelMensagem.setText("Selecione um pagamento na lista.");
+            return;
+        }
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/EditarPagamento.fxml"));
+            Parent raiz = loader.load();
+
+            EditarPagamentoController controller = loader.getController();
+            controller.carregarPagamento(pagamento);
+
+            Scene cena = new Scene(raiz, 480, 580);
+            cena.getStylesheets().add(getClass().getResource("/css/estilo-azul.css").toExternalForm());
+
+            Stage modal = new Stage();
+            modal.setTitle("Editar Pagamento");
+            modal.setScene(cena);
+            modal.initModality(Modality.APPLICATION_MODAL);
+            modal.showAndWait();
+
+            recarregar();
+
+        } catch (IOException e) {
+            labelMensagem.setText("Erro ao abrir a janela do pagamento.");
+        }
+    }
+
+    @FXML
+    public void excluirPagamento() {
+        Pagamento pagamento = listaPagamentos.getSelectionModel().getSelectedItem();
+        if (pagamento == null) {
+            labelMensagem.setText("Selecione um pagamento na lista.");
+            return;
+        }
+
+        if (!confirmar("Excluir este pagamento de R$ " + String.format("%.2f", pagamento.getValor()) + "?")) {
+            return;
+        }
+
+        try {
+            pagamentoService.removerPagamento(pagamento.getId());
+            recarregar();
+            labelMensagem.setText("Pagamento excluído.");
+
+        } catch (SQLException e) {
+            labelMensagem.setText("Erro ao salvar no banco.");
+        }
+    }
+
 }

@@ -17,6 +17,28 @@ public class PagamentoService {
     public void lancarPagamento(LocalDate data, double valor, TipoPagamento tipo,
                                 DirecaoPagamento direcao, CategoriaGasto categoria,
                                 String descricao, int servicoId) throws SQLException {
+        validarDados(data, valor, tipo, direcao, categoria);
+        if (servicoId <= 0) {
+            throw new IllegalArgumentException("Selecione o serviço do pagamento.");
+        }
+
+        Pagamento pagamento = new Pagamento(0, data, valor, tipo, direcao,
+                categoriaFinal(direcao, categoria), descricao);
+        pagamentoDAO.salvar(pagamento, servicoId);
+    }
+
+    public void atualizarPagamento(int id, LocalDate data, double valor, TipoPagamento tipo,
+                                   DirecaoPagamento direcao, CategoriaGasto categoria,
+                                   String descricao) throws SQLException {
+        validarDados(data, valor, tipo, direcao, categoria);
+
+        Pagamento pagamento = new Pagamento(id, data, valor, tipo, direcao,
+                categoriaFinal(direcao, categoria), descricao);
+        pagamentoDAO.atualizar(pagamento);
+    }
+
+    private void validarDados(LocalDate data, double valor, TipoPagamento tipo,
+                              DirecaoPagamento direcao, CategoriaGasto categoria) {
         if (data == null) {
             throw new IllegalArgumentException("A data do pagamento é obrigatória.");
         }
@@ -32,14 +54,10 @@ public class PagamentoService {
         if (direcao == DirecaoPagamento.REALIZADO && categoria == null) {
             throw new IllegalArgumentException("Informe se o gasto foi com funcionário ou material.");
         }
-        if (servicoId <= 0) {
-            throw new IllegalArgumentException("Selecione o serviço do pagamento.");
-        }
+    }
 
-        CategoriaGasto categoriaFinal = direcao == DirecaoPagamento.REALIZADO ? categoria : null;
-
-        Pagamento pagamento = new Pagamento(0, data, valor, tipo, direcao, categoriaFinal, descricao);
-        pagamentoDAO.salvar(pagamento, servicoId);
+    private CategoriaGasto categoriaFinal(DirecaoPagamento direcao, CategoriaGasto categoria) {
+        return direcao == DirecaoPagamento.REALIZADO ? categoria : null;
     }
 
     public List<Pagamento> listarPagamentosDoServico(int servicoId) throws SQLException {
