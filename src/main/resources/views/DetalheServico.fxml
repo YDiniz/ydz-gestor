@@ -33,7 +33,9 @@
     <Label text="Pagamentos:" style="-fx-font-weight: bold;"/>
     <ListView fx:id="listaPagamentos" prefHeight="80" prefWidth="350"/>
 
-    <Label fx:id="labelTotalPago" style="-fx-font-weight: bold; -fx-text-fill: #0C447C;"/>
+    <Label fx:id="labelTotalRecebido" style="-fx-font-weight: bold;"/>
+    <Label fx:id="labelTotalGasto" style="-fx-font-weight: bold;"/>
+    <Label fx:id="labelSaldo" style="-fx-font-weight: bold; -fx-text-fill: #0C447C;"/>
 
     <Button text="Fechar" onAction="#fechar"/>
 

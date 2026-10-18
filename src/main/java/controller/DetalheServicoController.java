@@ -10,6 +10,7 @@ import model.Funcionario;
 import model.Pagamento;
 import model.Servico;
 import service.PagamentoService;
+import model.DirecaoPagamento;
 
 import java.awt.Desktop;
 import java.io.File;
@@ -39,7 +40,13 @@ public class DetalheServicoController {
     private ListView<Pagamento> listaPagamentos;
 
     @FXML
-    private Label labelTotalPago;
+    private Label labelTotalRecebido;
+
+    @FXML
+    private Label labelTotalGasto;
+
+    @FXML
+    private Label labelSaldo;
 
     private PagamentoService pagamentoService = new PagamentoService();
 
@@ -80,15 +87,20 @@ public class DetalheServicoController {
             @Override
             protected void updateItem(Pagamento p, boolean vazio) {
                 super.updateItem(p, vazio);
-                setText(vazio || p == null ? "" : p.getData() + " - R$ " + p.getValor() + " (" + p.getTipo() + ")");
+                setText(vazio || p == null ? "" : p.getData() + " - " + p.getDirecao() + " - R$ " + String.format("%.2f", p.getValor()) + " (" + p.getTipo() + ")");
             }
         });
 
         try {
-            double total = pagamentoService.calcularTotalPago(servico.getId());
-            labelTotalPago.setText("Total pago: R$ " + total);
+            double recebido = pagamentoService.calcularTotal(servico.getId(), DirecaoPagamento.RECEBIDO);
+            double gasto = pagamentoService.calcularTotal(servico.getId(), DirecaoPagamento.REALIZADO);
+
+            labelTotalRecebido.setText(String.format("Total recebido: R$ %.2f", recebido));
+            labelTotalGasto.setText(String.format("Total gasto: R$ %.2f", gasto));
+            labelSaldo.setText(String.format("Saldo: R$ %.2f", recebido - gasto));
+
         } catch (SQLException e) {
-            labelTotalPago.setText("Erro ao calcular total pago.");
+            labelSaldo.setText("Erro ao calcular os totais.");
         }
     }
 

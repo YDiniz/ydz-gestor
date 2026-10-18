@@ -112,7 +112,7 @@ public class AcompanharServicosController {
 
             Stage modal = new Stage();
             modal.setTitle("Detalhes do Serviço");
-            Scene cena = new Scene(raiz, 400, 600);
+            Scene cena = new Scene(raiz, 400, 680);
             cena.getStylesheets().add(getClass().getResource("/css/estilo-azul.css").toExternalForm());
             modal.setScene(cena);
             modal.initModality(Modality.APPLICATION_MODAL);

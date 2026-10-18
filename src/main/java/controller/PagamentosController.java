@@ -15,6 +15,11 @@ import model.TipoPagamento;
 import service.PagamentoService;
 import service.ServicoService;
 import util.Navegador;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import model.TipoDocumento;
+import service.DocumentoService;
+import java.io.File;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -50,6 +55,12 @@ public class PagamentosController {
 
     private ServicoService servicoService = new ServicoService();
     private PagamentoService pagamentoService = new PagamentoService();
+
+    @FXML
+    private Label labelArquivoSelecionado;
+
+    private DocumentoService documentoService = new DocumentoService();
+    private File arquivoSelecionado;
 
     @FXML
     public void initialize() {
@@ -96,16 +107,23 @@ public class PagamentosController {
 
         try {
             double valor = Double.parseDouble(campoValor.getText().trim().replace(",", "."));
+            int servicoId = servico != null ? servico.getId() : 0;
 
             pagamentoService.lancarPagamento(campoData.getValue(), valor, comboTipo.getValue(),
-                    direcao, comboCategoria.getValue(), campoDescricao.getText(),
-                    servico != null ? servico.getId() : 0);
+                    direcao, comboCategoria.getValue(), campoDescricao.getText(), servicoId);
+
+            if (arquivoSelecionado != null) {
+                documentoService.anexarDocumento(TipoDocumento.COMPROVANTE_PAGAMENTO,
+                        arquivoSelecionado.getAbsolutePath(), servicoId);
+            }
 
             labelMensagem.setText("Pagamento lançado com sucesso!");
             campoValor.clear();
             campoDescricao.clear();
             comboTipo.setValue(null);
             comboCategoria.setValue(null);
+            arquivoSelecionado = null;
+            labelArquivoSelecionado.setText("");
 
         } catch (NumberFormatException e) {
             labelMensagem.setText("Informe um valor válido, por exemplo 500,00.");
@@ -119,5 +137,21 @@ public class PagamentosController {
     @FXML
     public void voltarAoMenu() {
         Navegador.irPara(campoValor, "/views/MenuPrincipal.fxml");
+    }
+
+    @FXML
+    public void selecionarArquivo() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Selecionar comprovante");
+        fileChooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("PDF ou Imagens", "*.pdf", "*.jpg", "*.png"));
+
+        Stage stage = (Stage) campoValor.getScene().getWindow();
+        File arquivo = fileChooser.showOpenDialog(stage);
+
+        if (arquivo != null) {
+            arquivoSelecionado = arquivo;
+            labelArquivoSelecionado.setText("Selecionado: " + arquivo.getName());
+        }
     }
 }

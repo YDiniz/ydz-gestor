@@ -52,6 +52,10 @@
             </VBox>
         </HBox>
 
+        <Label text="Anexar comprovante (opcional):"/>
+        <Button text="Selecionar Arquivo" prefWidth="200" onAction="#selecionarArquivo"/>
+        <Label fx:id="labelArquivoSelecionado" style="-fx-font-size: 11px; -fx-text-fill: gray;"/>
+
         <Button text="Salvar" prefWidth="150" onAction="#salvar" defaultButton="true"/>
 
         <Label fx:id="labelMensagem"/>
