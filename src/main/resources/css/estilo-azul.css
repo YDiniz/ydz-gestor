@@ -75,3 +75,27 @@
     -fx-border-width: 0;
     -fx-padding: 4 0 4 8;
 }
+
+.cartao-menu {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-border-color: #B5D4F4;
+    -fx-border-radius: 10;
+    -fx-pref-width: 170;
+    -fx-pref-height: 140;
+    -fx-cursor: hand;
+}
+
+.cartao-menu:hover {
+    -fx-background-color: #E6F1FB;
+}
+
+.cartao-icone {
+    -fx-font-size: 40px;
+}
+
+.cartao-texto {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #0C447C;
+}
