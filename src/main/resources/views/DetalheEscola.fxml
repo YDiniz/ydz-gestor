@@ -25,7 +25,10 @@
         <Label text="Endereço:"/>
         <TextField fx:id="campoEndereco" prefWidth="280" maxWidth="280"/>
 
-        <Label text="Contato:"/>
+        <Label text="Nome do Contato:"/>
+        <TextField fx:id="campoNomeContato" prefWidth="280" maxWidth="280"/>
+
+        <Label text="Contato (telefone ou e-mail):"/>
         <TextField fx:id="campoContato" prefWidth="280" maxWidth="280"/>
 
         <HBox alignment="CENTER" spacing="10">

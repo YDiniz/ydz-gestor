@@ -21,6 +21,9 @@ public class DetalheEscolaController {
     private TextField campoEndereco;
 
     @FXML
+    private TextField campoNomeContato;
+
+    @FXML
     private TextField campoContato;
 
     @FXML
@@ -34,13 +37,14 @@ public class DetalheEscolaController {
         campoNome.setText(escola.getNome());
         campoEndereco.setText(escola.getEndereco());
         campoContato.setText(escola.getContato());
+        campoNomeContato.setText(escola.getNomeContato());
     }
 
     @FXML
     public void salvar() {
         try {
             Escola alterada = new Escola(escola.getId(), campoNome.getText(),
-                    campoEndereco.getText(), campoContato.getText());
+                    campoEndereco.getText(), campoContato.getText(), campoNomeContato.getText());
             escolaService.atualizarEscola(alterada);
             fechar();
 

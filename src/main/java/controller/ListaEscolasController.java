@@ -65,7 +65,7 @@ public class ListaEscolasController {
             DetalheEscolaController controller = loader.getController();
             controller.carregarEscola(escola);
 
-            Scene cena = new Scene(raiz, 380, 430);
+            Scene cena = new Scene(raiz, 380, 520);
             cena.getStylesheets().add(getClass().getResource("/css/estilo-azul.css").toExternalForm());
 
             Stage modal = new Stage();

@@ -11,7 +11,8 @@ public class EscolaServiceTest {
         EscolaService escolaService = new EscolaService();
 
         assertThrows(IllegalArgumentException.class, () -> {
-            escolaService.cadastrarEscola("", "Rua Teste", "11999999999");
+            escolaService.cadastrarEscola("", "Rua Teste", "11999999999", null);
         });
     }
+
 }

@@ -10,12 +10,12 @@ public class EscolaService {
 
     private EscolaDAO escolaDAO = new EscolaDAO();
 
-    public void cadastrarEscola(String nome, String endereco, String contato) throws SQLException {
+    public void cadastrarEscola(String nome, String endereco, String contato, String nomeContato) throws SQLException {
         if (nome == null || nome.isBlank()) {
             throw new IllegalArgumentException("O nome da escola é obrigatório.");
         }
 
-        Escola escola = new Escola(0, nome, endereco, contato);
+        Escola escola = new Escola(0, nome, endereco, contato, nomeContato);
         escolaDAO.salvar(escola);
     }
 

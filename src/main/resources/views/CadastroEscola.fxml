@@ -26,6 +26,9 @@
         <Label text="Endereço:"/>
         <TextField fx:id="campoEndereco" prefWidth="300" maxWidth="300"/>
 
+        <Label text="Nome do Contato:"/>
+        <TextField fx:id="campoNomeContato" prefWidth="300" maxWidth="300"/>
+
         <Label text="Contato (telefone ou e-mail):"/>
         <TextField fx:id="campoContato" prefWidth="300" maxWidth="300"/>
 

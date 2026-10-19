@@ -17,6 +17,9 @@ public class CadastroEscolaController {
     private TextField campoEndereco;
 
     @FXML
+    private TextField campoNomeContato;
+
+    @FXML
     private TextField campoContato;
 
     @FXML
@@ -27,12 +30,13 @@ public class CadastroEscolaController {
     @FXML
     public void salvar() {
         try {
-            escolaService.cadastrarEscola(campoNome.getText(), campoEndereco.getText(), campoContato.getText());
+            escolaService.cadastrarEscola(campoNome.getText(), campoEndereco.getText(), campoContato.getText(), campoNomeContato.getText());
 
             labelMensagem.setText("Escola cadastrada com sucesso!");
             campoNome.clear();
             campoEndereco.clear();
             campoContato.clear();
+            campoNomeContato.clear();
 
         } catch (IllegalArgumentException e) {
             labelMensagem.setText(e.getMessage());

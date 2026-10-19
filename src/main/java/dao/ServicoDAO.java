@@ -46,7 +46,7 @@ public class ServicoDAO {
     public List<Servico> listarTodos() throws SQLException {
         List<Servico> servicos = new ArrayList<>();
         String sql = "SELECT s.id, s.nome, s.tipo_obra, s.status, " +
-                "e.id AS escola_id, e.nome AS escola_nome, e.endereco AS escola_endereco, e.contato AS escola_contato " +
+                "e.id AS escola_id, e.nome AS escola_nome, e.endereco AS escola_endereco, " + "e.contato AS escola_contato, e.nome_contato AS escola_nome_contato " +
                 "FROM servico s " +
                 "JOIN escola e ON s.escola_id = e.id";
 
@@ -59,7 +59,8 @@ public class ServicoDAO {
                         rs.getInt("escola_id"),
                         rs.getString("escola_nome"),
                         rs.getString("escola_endereco"),
-                        rs.getString("escola_contato")
+                        rs.getString("escola_contato"),
+                        rs.getString("escola_nome_contato")
                 );
 
                 Servico servico = new Servico(

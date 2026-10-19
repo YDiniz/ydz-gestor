@@ -12,8 +12,8 @@ import java.util.List;
 
 public class EscolaDAO {
 
-    public void salvar (Escola escola) throws SQLException {
-        String sql = "INSERT INTO escola (nome, endereco, contato) VALUES (?, ?, ?,)";
+    public void salvar(Escola escola) throws SQLException {
+        String sql = "INSERT INTO escola (nome, endereco, contato, nome_contato) VALUES (?, ?, ?, ?)";
 
         try (Connection conexao = ConexaoBanco.conectar();
              PreparedStatement stmt = conexao.prepareStatement(sql)) {
@@ -21,6 +21,7 @@ public class EscolaDAO {
             stmt.setString(1, escola.getNome());
             stmt.setString(2, escola.getEndereco());
             stmt.setString(3, escola.getContato());
+            stmt.setString(4, escola.getNomeContato());
 
             stmt.executeUpdate();
         }
@@ -39,7 +40,8 @@ public class EscolaDAO {
                         rs.getInt("id"),
                         rs.getString("nome"),
                         rs.getString("endereco"),
-                        rs.getString("contato")
+                        rs.getString("contato"),
+                        rs.getString("nome_contato")
                 );
                 escolas.add(escola);
             }
@@ -49,7 +51,7 @@ public class EscolaDAO {
     }
 
     public void atualizar(Escola escola) throws SQLException {
-        String sql = "UPDATE escola SET nome = ?, endereco = ?, contato = ? WHERE id = ?";
+        String sql = "UPDATE escola SET nome = ?, endereco = ?, contato = ?, nome_contato = ? WHERE id = ?";
 
         try (Connection conexao = ConexaoBanco.conectar();
              PreparedStatement stmt = conexao.prepareStatement(sql)) {
@@ -57,7 +59,8 @@ public class EscolaDAO {
             stmt.setString(1, escola.getNome());
             stmt.setString(2, escola.getEndereco());
             stmt.setString(3, escola.getContato());
-            stmt.setInt(4, escola.getId());
+            stmt.setString(4, escola.getNomeContato());
+            stmt.setInt(5, escola.getId());
 
             stmt.executeUpdate();
         }
@@ -73,5 +76,4 @@ public class EscolaDAO {
             stmt.executeUpdate();
         }
     }
-
 }

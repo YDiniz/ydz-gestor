@@ -5,13 +5,14 @@ public class Escola {
     private String nome;
     private String endereco;
     private String contato;
+    private String nomeContato;
 
-
-    public Escola(int id, String nome, String endereco, String contato) {
+    public Escola(int id, String nome, String endereco, String contato, String nomeContato) {
         this.id = id;
         this.nome = nome;
         this.endereco = endereco;
         this.contato = contato;
+        this.nomeContato = nomeContato;
     }
 
     public int getId() {
@@ -45,5 +46,12 @@ public class Escola {
     public void setContato(String contato) {
         this.contato = contato;
     }
-}
 
+    public String getNomeContato() {
+        return nomeContato;
+    }
+
+    public void setNomeContato(String nomeContato) {
+        this.nomeContato = nomeContato;
+    }
+}
