@@ -10,12 +10,12 @@ public class FuncionarioService {
 
     private FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
 
-    public void cadastrarFuncionario(String nome, String cargo) throws SQLException {
+    public void cadastrarFuncionario(String nome, String cargo, String telefone) throws SQLException {
         if (nome == null || nome.isBlank()) {
             throw new IllegalArgumentException("O nome do funcionário é obrigatório.");
         }
 
-        Funcionario funcionario = new Funcionario(0, nome, cargo);
+        Funcionario funcionario = new Funcionario(0, nome, cargo, telefone);
         funcionarioDAO.salvar(funcionario);
     }
 

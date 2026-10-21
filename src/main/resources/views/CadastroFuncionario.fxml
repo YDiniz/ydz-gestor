@@ -26,6 +26,9 @@
         <Label text="Cargo:"/>
         <TextField fx:id="campoCargo" prefWidth="300" maxWidth="300"/>
 
+        <Label text="Telefone (contato):"/>
+        <TextField fx:id="campoTelefone" promptText="(11) 99999-9999" prefWidth="300" maxWidth="300"/>
+
         <Button text="Salvar" prefWidth="150" onAction="#salvar" defaultButton="true"/>
 
         <Label fx:id="labelMensagem"/>

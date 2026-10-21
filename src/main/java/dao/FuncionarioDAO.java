@@ -13,13 +13,14 @@ import java.util.List;
 public class FuncionarioDAO {
 
     public void salvar(Funcionario funcionario) throws SQLException {
-        String sql = "INSERT INTO funcionario (nome, cargo) VALUES (?, ?)";
+        String sql = "INSERT INTO funcionario (nome, cargo, telefone) VALUES (?, ?, ?)";
 
         try (Connection conexao = ConexaoBanco.conectar();
              PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
             stmt.setString(1, funcionario.getNome());
             stmt.setString(2, funcionario.getCargo());
+            stmt.setString(3, funcionario.getTelefone());
 
             stmt.executeUpdate();
         }
@@ -37,7 +38,8 @@ public class FuncionarioDAO {
                 Funcionario funcionario = new Funcionario(
                         rs.getInt("id"),
                         rs.getString("nome"),
-                        rs.getString("cargo")
+                        rs.getString("cargo"),
+                        rs.getString("telefone")
                 );
                 funcionarios.add(funcionario);
             }
@@ -47,14 +49,15 @@ public class FuncionarioDAO {
     }
 
     public void atualizar(Funcionario funcionario) throws SQLException {
-        String sql = "UPDATE funcionario SET nome = ?, cargo = ? WHERE id = ?";
+        String sql = "UPDATE funcionario SET nome = ?, cargo = ?, telefone = ? WHERE id = ?";
 
         try (Connection conexao = ConexaoBanco.conectar();
              PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
             stmt.setString(1, funcionario.getNome());
             stmt.setString(2, funcionario.getCargo());
-            stmt.setInt(3, funcionario.getId());
+            stmt.setString(3, funcionario.getTelefone());
+            stmt.setInt(4, funcionario.getId());
 
             stmt.executeUpdate();
         }
@@ -73,7 +76,7 @@ public class FuncionarioDAO {
 
     public List<Funcionario> listarPorServico(int servicoId) throws SQLException {
         List<Funcionario> funcionarios = new ArrayList<>();
-        String sql = "SELECT f.id, f.nome, f.cargo " +
+        String sql = "SELECT f.id, f.nome, f.cargo, f.telefone " +
                 "FROM funcionario f " +
                 "JOIN servico_funcionario sf ON f.id = sf.funcionario_id " +
                 "WHERE sf.servico_id = ?";
@@ -88,7 +91,8 @@ public class FuncionarioDAO {
                     Funcionario funcionario = new Funcionario(
                             rs.getInt("id"),
                             rs.getString("nome"),
-                            rs.getString("cargo")
+                            rs.getString("cargo"),
+                            rs.getString("telefone")
                     );
                     funcionarios.add(funcionario);
                 }

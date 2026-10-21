@@ -25,6 +25,9 @@
         <Label text="Cargo:"/>
         <TextField fx:id="campoCargo" prefWidth="280" maxWidth="280"/>
 
+        <Label text="Telefone (contato):"/>
+        <TextField fx:id="campoTelefone" prefWidth="280" maxWidth="280"/>
+
         <HBox alignment="CENTER" spacing="10">
             <Button text="Salvar" onAction="#salvar" defaultButton="true"/>
             <Button text="Excluir" onAction="#excluir"/>

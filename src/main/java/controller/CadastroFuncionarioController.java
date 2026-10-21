@@ -19,16 +19,20 @@ public class CadastroFuncionarioController {
     @FXML
     private Label labelMensagem;
 
+    @FXML
+    private TextField campoTelefone;
+
     private FuncionarioService funcionarioService = new FuncionarioService();
 
     @FXML
     public void salvar() {
         try {
-            funcionarioService.cadastrarFuncionario(campoNome.getText(), campoCargo.getText());
+            funcionarioService.cadastrarFuncionario(campoNome.getText(), campoCargo.getText(), campoTelefone.getText());
 
             labelMensagem.setText("Funcionário cadastrado com sucesso!");
             campoNome.clear();
             campoCargo.clear();
+            campoTelefone.clear();
 
         } catch (IllegalArgumentException e) {
             labelMensagem.setText(e.getMessage());

@@ -65,7 +65,7 @@ public class ListaFuncionariosController {
             DetalheFuncionarioController controller = loader.getController();
             controller.carregarFuncionario(funcionario);
 
-            Scene cena = new Scene(raiz, 380, 360);
+            Scene cena = new Scene(raiz, 380, 430);
             cena.getStylesheets().add(getClass().getResource("/css/estilo-azul.css").toExternalForm());
 
             Stage modal = new Stage();

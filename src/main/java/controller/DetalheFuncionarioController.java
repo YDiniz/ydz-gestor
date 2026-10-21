@@ -21,6 +21,9 @@ public class DetalheFuncionarioController {
     private TextField campoCargo;
 
     @FXML
+    private TextField campoTelefone;
+
+    @FXML
     private Label labelMensagem;
 
     private FuncionarioService funcionarioService = new FuncionarioService();
@@ -30,12 +33,14 @@ public class DetalheFuncionarioController {
         this.funcionario = funcionario;
         campoNome.setText(funcionario.getNome());
         campoCargo.setText(funcionario.getCargo());
+        campoTelefone.setText(funcionario.getTelefone());
     }
 
     @FXML
     public void salvar() {
         try {
-            Funcionario alterado = new Funcionario(funcionario.getId(), campoNome.getText(), campoCargo.getText());
+            Funcionario alterado = new Funcionario(funcionario.getId(), campoNome.getText(),
+                    campoCargo.getText(), campoTelefone.getText());
             funcionarioService.atualizarFuncionario(alterado);
             fechar();
 
