@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.time.LocalDate;
 
 public class Servico {
     private int id;
@@ -23,6 +24,16 @@ public class Servico {
         this.funcionarios = new ArrayList<>();
         this.documentos = new ArrayList<>();
         this.pagamentos = new ArrayList<>();
+    }
+
+    private LocalDate dataConclusao;
+
+    public LocalDate getDataConclusao() {
+        return dataConclusao;
+    }
+
+    public void setDataConclusao(LocalDate dataConclusao) {
+        this.dataConclusao = dataConclusao;
     }
 
 

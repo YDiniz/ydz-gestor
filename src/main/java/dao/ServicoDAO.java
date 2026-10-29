@@ -13,6 +13,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import java.time.LocalDate;
+import java.sql.Types;
+
 public class ServicoDAO {
 
     private FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
@@ -45,7 +48,7 @@ public class ServicoDAO {
 
     public List<Servico> listarTodos() throws SQLException {
         List<Servico> servicos = new ArrayList<>();
-        String sql = "SELECT s.id, s.nome, s.tipo_obra, s.status, " +
+        String sql = "SELECT s.id, s.nome, s.tipo_obra, s.status, s.data_conclusao, " +
                 "e.id AS escola_id, e.nome AS escola_nome, e.endereco AS escola_endereco, " + "e.contato AS escola_contato, e.nome_contato AS escola_nome_contato " +
                 "FROM servico s " +
                 "JOIN escola e ON s.escola_id = e.id";
@@ -69,6 +72,12 @@ public class ServicoDAO {
                         rs.getString("tipo_obra"),
                         escola
                 );
+                servico.setStatus(StatusServico.valueOf(rs.getString("status")));
+
+                java.sql.Date dataConclusao = rs.getDate("data_conclusao");
+                if (dataConclusao != null) {
+                    servico.setDataConclusao(dataConclusao.toLocalDate());
+                }
 
                 int servicoId = servico.getId();
 
@@ -104,13 +113,20 @@ public class ServicoDAO {
     }
 
     public void atualizarStatus(int servicoId, StatusServico status) throws SQLException {
-        String sql = "UPDATE servico SET status = ? WHERE id = ?";
+        String sql = "UPDATE servico SET status = ?, data_conclusao = ? WHERE id = ?";
 
         try (Connection conexao = ConexaoBanco.conectar();
              PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
             stmt.setString(1, status.name());
-            stmt.setInt(2, servicoId);
+
+            if (status == StatusServico.CONCLUIDO) {
+                stmt.setObject(2, LocalDate.now());
+            } else {
+                stmt.setNull(2, Types.DATE);
+            }
+
+            stmt.setInt(3, servicoId);
 
             stmt.executeUpdate();
         }

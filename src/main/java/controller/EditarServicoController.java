@@ -276,7 +276,7 @@ public class EditarServicoController {
             EditarPagamentoController controller = loader.getController();
             controller.carregarPagamento(pagamento);
 
-            Scene cena = new Scene(raiz, 480, 580);
+            Scene cena = new Scene(raiz, 500, 650);
             cena.getStylesheets().add(getClass().getResource("/css/estilo-azul.css").toExternalForm());
 
             Stage modal = new Stage();

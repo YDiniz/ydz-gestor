@@ -18,6 +18,7 @@ import javafx.scene.Parent;
 import javafx.stage.Modality;
 import java.io.IOException;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -157,6 +158,31 @@ public class AcompanharServicosController {
 
         } catch (IOException e) {
             System.out.println("Erro ao abrir edição: " + e.getMessage());
+        }
+    }
+
+    @FXML
+    public void concluirSelecionado() {
+        Servico selecionado = listaServicos.getSelectionModel().getSelectedItem();
+
+        if (selecionado == null) {
+            new Alert(Alert.AlertType.INFORMATION, "Selecione um serviço na lista.").showAndWait();
+            return;
+        }
+
+        Alert confirmacao = new Alert(Alert.AlertType.CONFIRMATION,
+                "Concluir o serviço \"" + selecionado.getNome() + "\"?", ButtonType.YES, ButtonType.NO);
+
+        if (confirmacao.showAndWait().filter(resposta -> resposta == ButtonType.YES).isEmpty()) {
+            return;
+        }
+
+        try {
+            servicoService.concluirServico(selecionado.getId());
+            aplicarFiltro();
+
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, "Erro ao concluir o serviço.").showAndWait();
         }
     }
 }

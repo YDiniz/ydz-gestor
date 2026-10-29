@@ -39,4 +39,12 @@ public class ServicoService {
         servicoDAO.atualizarStatus(servicoId, status);
     }
 
+    public void concluirServico(int servicoId) throws SQLException {
+        servicoDAO.atualizarStatus(servicoId, StatusServico.CONCLUIDO);
+    }
+
+    public void reabrirServico(int servicoId) throws SQLException {
+        servicoDAO.atualizarStatus(servicoId, StatusServico.EM_ANDAMENTO);
+    }
+
 }

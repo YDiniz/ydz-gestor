@@ -1,67 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 
-<StackPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-           fx:controller="controller.EditarServicoController" styleClass="root">
+<StackPane styleClass="root" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EditarServicoController">
 
     <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;">
 
-        <VBox alignment="TOP_CENTER" spacing="12" maxWidth="580" styleClass="card">
+        <VBox alignment="TOP_CENTER" maxWidth="798.0" prefHeight="915.0" prefWidth="798.0" spacing="12" styleClass="card">
 
             <padding>
-                <Insets top="30" right="30" bottom="30" left="30"/>
+                <Insets bottom="30" left="30" right="30" top="30" />
             </padding>
 
-            <Label text="Editar Serviço" styleClass="label-titulo"/>
+            <Label prefHeight="59.0" prefWidth="72.0" styleClass="label-titulo" text="Editar Serviço" />
 
-            <Label fx:id="labelNome" style="-fx-font-weight: bold;"/>
-            <Label fx:id="labelTipo"/>
-            <Label fx:id="labelEscola"/>
+            <Label fx:id="labelNome" style="-fx-font-weight: bold;" />
+            <Label fx:id="labelTipo" />
+            <Label fx:id="labelEscola" />
 
-            <Separator/>
+            <Separator />
 
-            <Label text="Status:" style="-fx-font-weight: bold;"/>
+            <Label prefHeight="60.0" prefWidth="39.0" style="-fx-font-weight: bold;" text="Status:" />
             <HBox alignment="CENTER" spacing="10">
-                <ComboBox fx:id="comboStatus" prefWidth="250"/>
-                <Button text="Salvar status" onAction="#salvarStatus"/>
+                <ComboBox fx:id="comboStatus" prefHeight="51.0" prefWidth="250" />
+                <Button onAction="#salvarStatus" text="Salvar status" />
             </HBox>
 
-            <Separator/>
+            <Separator />
 
-            <Label text="Funcionários:" style="-fx-font-weight: bold;"/>
-            <ListView fx:id="listaFuncionarios" prefHeight="120" prefWidth="500" maxWidth="500"/>
-            <Button text="Remover selecionado" onAction="#removerFuncionario"/>
+            <Label style="-fx-font-weight: bold;" text="Funcionários:" />
+            <ListView fx:id="listaFuncionarios" maxWidth="500" prefHeight="133.0" prefWidth="500" />
+            <Button onAction="#removerFuncionario" prefHeight="26.0" prefWidth="174.0" text="Remover selecionado" />
+             <ComboBox fx:id="comboNovoFuncionario" prefHeight="25.0" prefWidth="169.0" promptText="Adicionar funcionário" />
+             <Button onAction="#adicionarFuncionario" text="Adicionar" />
+            <HBox alignment="CENTER" spacing="10" />
+
+            <Separator />
+
+            <Label style="-fx-font-weight: bold;" text="Documentos:" />
+            <ListView fx:id="listaDocumentos" maxWidth="500" prefHeight="130.0" prefWidth="500" />
+            <Button onAction="#removerDocumento" text="Remover selecionado" />
             <HBox alignment="CENTER" spacing="10">
-                <ComboBox fx:id="comboNovoFuncionario" prefWidth="250" promptText="Adicionar funcionário"/>
-                <Button text="Adicionar" onAction="#adicionarFuncionario"/>
+                <ComboBox fx:id="comboTipoDocumento" prefWidth="250" promptText="Tipo do documento" />
+            </HBox>
+             <Button onAction="#anexarDocumento" text="Anexar arquivo..." />
+
+            <Separator />
+
+            <Label style="-fx-font-weight: bold;" text="Pagamentos:" />
+            <ListView fx:id="listaPagamentos" maxWidth="500" prefHeight="120" prefWidth="500" />
+            <HBox alignment="CENTER" spacing="10">
+                <Button onAction="#editarPagamento" text="Editar selecionado" />
+                <Button onAction="#excluirPagamento" text="Excluir selecionado" />
             </HBox>
 
-            <Separator/>
+            <Separator />
 
-            <Label text="Documentos:" style="-fx-font-weight: bold;"/>
-            <ListView fx:id="listaDocumentos" prefHeight="120" prefWidth="500" maxWidth="500"/>
-            <Button text="Remover selecionado" onAction="#removerDocumento"/>
-            <HBox alignment="CENTER" spacing="10">
-                <ComboBox fx:id="comboTipoDocumento" prefWidth="250" promptText="Tipo do documento"/>
-                <Button text="Anexar arquivo..." onAction="#anexarDocumento"/>
-            </HBox>
-
-            <Separator/>
-
-            <Label text="Pagamentos:" style="-fx-font-weight: bold;"/>
-            <ListView fx:id="listaPagamentos" prefHeight="120" prefWidth="500" maxWidth="500"/>
-            <HBox alignment="CENTER" spacing="10">
-                <Button text="Editar selecionado" onAction="#editarPagamento"/>
-                <Button text="Excluir selecionado" onAction="#excluirPagamento"/>
-            </HBox>
-
-            <Separator/>
-
-            <Label fx:id="labelMensagem"/>
-            <Button text="Fechar" onAction="#fechar"/>
+            <Label fx:id="labelMensagem" />
+            <Button onAction="#fechar" text="Fechar" />
 
         </VBox>
 
