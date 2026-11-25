@@ -35,7 +35,8 @@ public class AcompanharServicosController {
 
     @FXML
     public void initialize() {
-        comboFiltroStatus.setItems(FXCollections.observableArrayList(StatusServico.values()));
+        comboFiltroStatus.setItems(FXCollections.observableArrayList(
+                StatusServico.ORCAMENTO, StatusServico.EM_ANDAMENTO));
 
         comboFiltroStatus.setOnAction(event -> aplicarFiltro());
 
@@ -65,7 +66,7 @@ public class AcompanharServicosController {
 
     private void carregarTodos() {
         try {
-            ObservableList<Servico> servicos = FXCollections.observableArrayList(servicoService.listarServicos());
+            ObservableList<Servico> servicos = FXCollections.observableArrayList(servicoService.listarEmAberto());
             listaServicos.setItems(servicos);
         } catch (SQLException e) {
             listaServicos.setItems(FXCollections.observableArrayList());
@@ -184,5 +185,11 @@ public class AcompanharServicosController {
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, "Erro ao concluir o serviço.").showAndWait();
         }
+    }
+
+    @FXML
+    public void limparFiltro() {
+        comboFiltroStatus.setValue(null);
+        carregarTodos();
     }
 }

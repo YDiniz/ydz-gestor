@@ -4,6 +4,7 @@ import dao.ServicoDAO;
 import model.Escola;
 import model.Servico;
 import model.StatusServico;
+import java.util.ArrayList;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -45,6 +46,20 @@ public class ServicoService {
 
     public void reabrirServico(int servicoId) throws SQLException {
         servicoDAO.atualizarStatus(servicoId, StatusServico.EM_ANDAMENTO);
+    }
+
+    public List<Servico> listarEmAberto() throws SQLException {
+        List<Servico> resultado = new ArrayList<>();
+        for (Servico s : servicoDAO.listarTodos()) {
+            if (s.getStatus() != StatusServico.CONCLUIDO) {
+                resultado.add(s);
+            }
+        }
+        return resultado;
+    }
+
+    public List<Servico> listarConcluidos() throws SQLException {
+        return servicoDAO.listarPorStatus(StatusServico.CONCLUIDO);
     }
 
 }

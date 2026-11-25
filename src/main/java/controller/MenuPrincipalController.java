@@ -38,4 +38,9 @@ public class MenuPrincipalController {
     public void sair() {
         Navegador.irPara(botaoNovoServico, "/views/Login.fxml");
     }
+
+    @FXML
+    public void abrirConcluidos() {
+        Navegador.irPara(botaoNovoServico, "/views/Concluidos.fxml");
+    }
 }

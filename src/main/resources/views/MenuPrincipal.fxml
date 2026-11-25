@@ -38,8 +38,18 @@
                 </graphic>
             </Button>
 
-            <Button styleClass="cartao-menu" onAction="#abrirPagamentos"
+            <Button styleClass="cartao-menu" onAction="#abrirConcluidos"
                     GridPane.columnIndex="2" GridPane.rowIndex="0">
+                <graphic>
+                    <VBox alignment="CENTER" spacing="8">
+                        <Label text="✅" styleClass="cartao-icone"/>
+                        <Label text="Concluídos" styleClass="cartao-texto"/>
+                    </VBox>
+                </graphic>
+            </Button>
+
+            <Button styleClass="cartao-menu" onAction="#abrirPagamentos"
+                    GridPane.columnIndex="0" GridPane.rowIndex="1">
                 <graphic>
                     <VBox alignment="CENTER" spacing="8">
                         <Label text="💰" styleClass="cartao-icone"/>
@@ -49,7 +59,7 @@
             </Button>
 
             <Button styleClass="cartao-menu" onAction="#abrirEscolas"
-                    GridPane.columnIndex="0" GridPane.rowIndex="1">
+                    GridPane.columnIndex="1" GridPane.rowIndex="1">
                 <graphic>
                     <VBox alignment="CENTER" spacing="8">
                         <Label text="🏫" styleClass="cartao-icone"/>
@@ -59,7 +69,7 @@
             </Button>
 
             <Button styleClass="cartao-menu" onAction="#abrirFuncionarios"
-                    GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    GridPane.columnIndex="2" GridPane.rowIndex="1">
                 <graphic>
                     <VBox alignment="CENTER" spacing="8">
                         <Label text="👷" styleClass="cartao-icone"/>
@@ -68,17 +78,11 @@
                 </graphic>
             </Button>
 
-            <Button styleClass="cartao-menu" onAction="#sair"
-                    GridPane.columnIndex="2" GridPane.rowIndex="1">
-                <graphic>
-                    <VBox alignment="CENTER" spacing="8">
-                        <Label text="🚪" styleClass="cartao-icone"/>
-                        <Label text="Sair" styleClass="cartao-texto"/>
-                    </VBox>
-                </graphic>
-            </Button>
-
         </GridPane>
+
+        <HBox alignment="CENTER_RIGHT">
+            <Button text="Sair" onAction="#sair"/>
+        </HBox>
 
     </VBox>
 

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+           fx:controller="controller.ConcluidosController" styleClass="root">
+
+    <VBox alignment="TOP_CENTER" spacing="12" maxWidth="560" styleClass="card">
+
+        <padding>
+            <Insets top="30" right="30" bottom="30" left="30"/>
+        </padding>
+
+        <Label text="Serviços Concluídos" styleClass="label-titulo"/>
+
+        <Button text="← Voltar ao Menu" onAction="#voltarAoMenu"/>
+
+        <Label text="Dê um duplo clique para ver os detalhes"
+               style="-fx-font-size: 11px; -fx-text-fill: gray;"/>
+
+        <ListView fx:id="listaConcluidos" prefHeight="400" prefWidth="500" maxWidth="500"/>
+
+        <Button text="Reabrir serviço selecionado" onAction="#reabrirSelecionado"/>
+
+        <Label fx:id="labelMensagem"/>
+
+    </VBox>
+
+</StackPane>

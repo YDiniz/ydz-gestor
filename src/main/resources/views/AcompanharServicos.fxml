@@ -25,6 +25,8 @@
         <Label text="Filtrar por status:"/>
         <ComboBox fx:id="comboFiltroStatus" prefWidth="250"/>
 
+        <Button text="Mostrar todos" onAction="#limparFiltro"/>
+
         <ListView fx:id="listaServicos" prefHeight="300" prefWidth="400"/>
 
         <HBox alignment="CENTER" spacing="10">
